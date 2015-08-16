@@ -1,0 +1,12 @@
+services:
+    anca_rebeca_full_calendar.service.serializer:
+        class: %anca_rebeca_full_calendar.serializer%
+
+    anca_rebeca_full_calendar.adapter.calendar_adapter:
+        class: %anca_rebeca_full_calendar.adapter%
+
+    anca_rebeca_full_calendar.service.calendar:
+        class: AncaRebeca\FullCalendarBundle\Service\Calendar
+        arguments:
+            - @anca_rebeca_full_calendar.service.serializer
+            - @anca_rebeca_full_calendar.adapter.calendar_adapter

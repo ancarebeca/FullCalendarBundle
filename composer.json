@@ -1,0 +1,14 @@
+{
+    "name": "ancarebeca/full-calendar-bundle",
+    "description": "Symfony2 integration with the library FullCalendar.js",
+    "type": "symfony-bundle",
+    "keywords": ["calendar", "fullcalendar", "jquery calendar"]
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rebeca Mora Anca",
+            "email": "anca.rebeca@gmail.com"
+        }
+    ],
+    "require": {}
+}

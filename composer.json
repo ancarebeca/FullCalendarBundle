@@ -2,13 +2,26 @@
     "name": "ancarebeca/full-calendar-bundle",
     "description": "Symfony2 integration with the library FullCalendar.js",
     "type": "symfony-bundle",
-    "keywords": ["calendar", "fullcalendar", "jquery calendar"]
+    "keywords": ["calendar", "fullcalendar", "jquery calendar", "symfony2 calendar", "symfony2 bundle"],
+    "homepage": "https://github.com/ancarebeca/FullCalendarBundle",
     "license": "MIT",
     "authors": [
         {
             "name": "Rebeca Mora Anca",
-            "email": "anca.rebeca@gmail.com"
+            "email": "anca.rebeca@gmail.com",
+            "role": "Developer"
         }
     ],
-    "require": {}
+    "require": {
+        "symfony/symfony": "~2.1"
+    },
+    "require-dev": {
+      "phpspec/phpspec": "^2.2"
+    },
+    "autoload": {
+        "psr-0": {
+            "AncaRebeca\\FullCalendarBundle": ""
+        }
+    },
+    "target-dir": "AncaRebeca/FullCalendarBundle"
 }

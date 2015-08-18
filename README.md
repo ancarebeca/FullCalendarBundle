@@ -14,12 +14,12 @@ Installation
 ------------
 Installation process:
 
-1. [Download FullCalendarBundle using composer](download-fullcalendarbundle)
-2. [Enable bundle](enable-bundle)
-3. [Create your Event class](create-event)
-4. [Create and Configure your own event adapter](config-adapter)
-5. [Add styles and scripts in your template](styles-scripts)
-6. [Add Routing](routing)
+1. [Download FullCalendarBundle using composer](#download-fullcalendarbundle)
+2. [Enable bundle](#enable-bundle)
+3. [Create your Event class](#create-event)
+4. [Create and Configure your own event adapter](#config-adapter)
+5. [Add styles and scripts in your template](#styles-scripts)
+6. [Add Routing](#routing)
 
 ### 1. Download FullCalendarBundle using composer <a id="download-fullcalendarbundle"></a>
 
@@ -75,10 +75,11 @@ class CustomAdapter implements CalendarAdapterInterface
     /**
      * @param \Datetime $startDate
      * @param \Datetime $endDate
+     * @param \array $filters
      *
      * @return EventInterface[]
      */
-    public function getData(\Datetime $startCalendarDate, \Datetime $endCalendarDate)
+    public function getData(\Datetime $startCalendarDate, \Datetime $endCalendarDate, array $filters = [])
     {
     	 // You may want do a custom query to populate the events	
         return [
@@ -182,6 +183,9 @@ $(function () {
 		{
 			url: /your/custom/route,
 			type: 'POST',
+			data: {
+			
+			}
 			error: function() {
 			   //alert()
 			}
@@ -189,8 +193,69 @@ $(function () {
 ]
 ```
 
+## Define your own Controller
+You may want to define your own controller. This is specially usefull when you want to use some filters in the calendar:
+
+```javascript
+// custom-settings.js 
+// ...
+		eventSources: [
+		{
+			url: /your/custom/route,
+			type: 'POST',
+			data: {
+			   userName: 'fulanito'
+			}
+			error: function() {
+			   //alert()
+			}
+		}
+// ....
+```
+
+```php
+<?php
+
+namespace Acme\AppBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class CalendarCustomController extends Controller
+{
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function loadAction(Request $request)
+    {
+        $startDate = new \DateTime($request->get('start'));
+        $endDate = new \DateTime($request->get('end'));
+        $filters = [
+           'userName' => $request->get('userName', 'default')
+        ];
+
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/json');
+
+        try {
+            $content = $this->get('anca_rebeca_full_calendar.service.calendar')->getData($startDate, $endDate, $filters);
+            $response->setContent($content);
+            $response->setStatusCode(Response::HTTP_OK);
+        } catch (\Exception $exception) {
+            $response->setContent([]);
+            $response->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        return $response;
+    }
+}
+``` 
+
 ## Define your own serializer
-You may want to define your on serializer. You only need to:
+You may want to define your own serializer. You only need to:
 
 Create your serializer implementing the serializer class:
 

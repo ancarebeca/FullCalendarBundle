@@ -49,9 +49,9 @@ public function registerBundles()
 
 namespace AppBundle\Entity;
 
-use AncaRebeca\FullCalendarBundle\Model\Event as BaseEnvet;
+use AncaRebeca\FullCalendarBundle\Model\Event as BaseEvent;
 
-class CalendarEvent extends BaseEnvet
+class CalendarEvent extends BaseEvent
 {
 	// Your fields 
 }
@@ -91,12 +91,12 @@ class CustomAdapter implements CalendarAdapterInterface
 
 Adding bundle config:
 
-```yaml
+```yml
 // app/config/config.yml
 
 full_calendar:
     adapter_class: AppBundle\Adapter\CustomAdapter
-    serializer_class: # by defualt AncaRebeca\FullCalendarBundle\Service\Serializer
+    serializer_class: # by default AncaRebeca\FullCalendarBundle\Service\Serializer
 ```
 
 ### 5. Add styles and scripts in your template <a id="styles-scripts"></a>
@@ -136,7 +136,7 @@ $> php app/console assets:install web
 
 ### 6. Define routes by default <a id="routing"></a>
 
-```yaml
+```yml
 # app/config/config.yml
 
 ancarebeca_fullcalendar:
@@ -220,7 +220,7 @@ class CustomSerializer implements SerializerInterface
 ```
 Adding config:
 
-```yaml
+```yml
 // app/config/config.yml
 
 full_calendar:

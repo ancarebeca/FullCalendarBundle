@@ -9,8 +9,9 @@ interface CalendarAdapterInterface
     /**
      * @param \Datetime $startDate
      * @param \Datetime $endDate
+     * @param array $filters
      *
      * @return EventInterface[]
      */
-    public function getData(\Datetime $startDate, \Datetime $endDate);
+    public function getData(\Datetime $startDate, \Datetime $endDate, $filters = []);
 }

@@ -75,10 +75,11 @@ class CustomAdapter implements CalendarAdapterInterface
     /**
      * @param \Datetime $startDate
      * @param \Datetime $endDate
+     * @param \array $filters
      *
      * @return EventInterface[]
      */
-    public function getData(\Datetime $startCalendarDate, \Datetime $endCalendarDate)
+    public function getData(\Datetime $startCalendarDate, \Datetime $endCalendarDate, array $filters = [])
     {
     	 // You may want do a custom query to populate the events	
         return [

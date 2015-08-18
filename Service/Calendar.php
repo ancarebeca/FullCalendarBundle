@@ -29,12 +29,13 @@ class Calendar
     /**
      * @param \Datetime $startDate
      * @param \DateTime $endDate
+     * @param array $filters
      *
      * @return string json
      */
-    public function getData(\Datetime $startDate, \DateTime $endDate)
+    public function getData(\Datetime $startDate, \DateTime $endDate, array $filters = [])
     {
-        $events = $this->adapter->getData($startDate, $endDate);
+        $events = $this->adapter->getData($startDate, $endDate, $filters);
 
         return $this->serializer->serialize($events);
     }

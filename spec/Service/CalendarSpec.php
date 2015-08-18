@@ -26,7 +26,7 @@ class CalendarSpec extends ObjectBehavior
         $events = [];
         $json = '{}';
 
-        $adapter->getData($startDate, $endDate)->shouldBeCalled()->willReturn($events);
+        $adapter->getData($startDate, $endDate, [])->shouldBeCalled()->willReturn($events);
 
         $serializer->serialize($events)->shouldBeCalled()->willReturn($json);
 

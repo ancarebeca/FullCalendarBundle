@@ -24,8 +24,5 @@ class FullCalendarExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
-
-        $container->setParameter('anca_rebeca_full_calendar.adapter', $config['adapter_class']);
-        $container->setParameter('anca_rebeca_full_calendar.serializer', $config['serializer_class']);
     }
 }

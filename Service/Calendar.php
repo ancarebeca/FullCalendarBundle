@@ -2,7 +2,8 @@
 
 namespace AncaRebeca\FullCalendarBundle\Service;
 
-use AncaRebeca\FullCalendarBundle\Adapter\CalendarAdapterInterface;
+use AncaRebeca\FullCalendarBundle\Event\CalendarEvent;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class Calendar
 {
@@ -12,18 +13,18 @@ class Calendar
     protected $serializer;
 
     /**
-     * @var CalendarAdapterInterface
+     * @var EventDispatcherInterface
      */
-    protected $adapter;
+    protected $dispatcher;
 
     /**
      * @param SerializerInterface $serializer
-     * @param CalendarAdapterInterface $adapter
+     * @param EventDispatcherInterface $dispatcher
      */
-    public function __construct(SerializerInterface $serializer, CalendarAdapterInterface $adapter)
+    public function __construct(SerializerInterface $serializer, EventDispatcherInterface $dispatcher)
     {
         $this->serializer = $serializer;
-        $this->adapter = $adapter;
+        $this->dispatcher = $dispatcher;
     }
 
     /**
@@ -35,8 +36,12 @@ class Calendar
      */
     public function getData(\Datetime $startDate, \DateTime $endDate, array $filters = [])
     {
-        $events = $this->adapter->getData($startDate, $endDate, $filters);
+        /** @var CalendarEvent $event */
+        $event = $this->dispatcher->dispatch(
+            CalendarEvent::SET_DATA,
+            new CalendarEvent($startDate, $endDate, $filters)
+        );
 
-        return $this->serializer->serialize($events);
+        return $this->serializer->serialize($event->getEvents());
     }
 }

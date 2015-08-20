@@ -7,17 +7,17 @@ use AncaRebeca\FullCalendarBundle\Model\EventInterface;
 class Serializer implements SerializerInterface
 {
     /**
-     * @param array $data
+     * @param EventInterface[] $events
      *
      * @return string json
      */
-    public function serialize(array $data)
+    public function serialize(array $events)
     {
         $result = [];
 
-        /** @var EventInterface $element */
-        foreach ($data as $element) {
-            $result[] = $element->toArray();
+        /** @var EventInterface $event */
+        foreach ($events as $event) {
+            $result[] = $event->toArray();
         }
 
         return json_encode($result);

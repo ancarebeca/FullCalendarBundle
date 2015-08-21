@@ -233,7 +233,7 @@ class CalendarCustomController extends Controller
     {
         $startDate = new \DateTime($request->get('start'));
         $endDate = new \DateTime($request->get('end'));
-        $filters = [
+        $filter = [
            'userName' => $request->get('userName', 'default')
         ];
 

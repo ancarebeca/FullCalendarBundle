@@ -20,12 +20,6 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('full_calendar');
 
-        $rootNode
-            ->children()
-                ->scalarNode('adapter_class')->isRequired()->cannotBeEmpty()->end()
-                ->scalarNode('serializer_class')->defaultValue('AncaRebeca\FullCalendarBundle\Service\Serializer')->end()
-            ->end();
-
         return $treeBuilder;
     }
 }

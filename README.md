@@ -17,7 +17,7 @@ Installation process:
 1. [Download FullCalendarBundle using composer](#download-fullcalendarbundle)
 2. [Enable bundle](#enable-bundle)
 3. [Create your Event class](#create-event)
-4. [Create your listener](#create-listener)
+4. [Create and Configure your own event adapter](#config-adapter)
 5. [Add styles and scripts in your template](#styles-scripts)
 6. [Add Routing](#routing)
 
@@ -57,49 +57,47 @@ class CalendarEvent extends BaseEvent
 }
 ```
 
-### 4. Create your listener <a id="create-listener"></a>
-You need to create your listener/subscriber class in order to load your events data in the calendar.
-
-```yml
-// service.yml
-services:
-   app_bundle.service.listener:
-        class: AppBundle\Listener\LoadDataListener
-	tags:
-   		- { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: loadData }
-
-```
-
-This listener is called when the event 'fullcalendar.set_data' is launched, for this reason you will need add this in your service.yml.
+### 4. Create and Configure your own event adapter <a id="config-adapter"></a>
 
 ```php
-// src/AppBundle/Listener/LoadDataListener.php
+// src/AppBundle/Adapter/CustomAdapter.php
 
 <?php
 
-namespace AppBundle\Listener;
+namespace AppBundle\Adapter;
 
-use AncaRebeca\FullCalendarBundle\Model\Event;
+use AncaRebeca\FullCalendarBundle\Adapter\CalendarAdapterInterface;
+use AncaRebeca\FullCalendarBundle\Model\EventInterface;
+use AppBundle\Entity\CustomAdapter;
 
-class LoadDataListener
+class CustomAdapter implements CalendarAdapterInterface
 {
     /**
-     * @param CalendarEvent $calendarEvent
+     * @param \Datetime $startDate
+     * @param \Datetime $endDate
+     * @param \array $filters
      *
      * @return EventInterface[]
      */
-    public function loadData(CalendarEvent $calendarEvent)
+    public function getData(\Datetime $startCalendarDate, \Datetime $endCalendarDate, array $filters = [])
     {
-    	 $startDate = $calendarEvent->getStartDatetime();
-   		 $endDate = $calendarEvent->getEndDatetime();
-		 $filters = $calendarEvent->getFilters();
-	
-    	 //You may want do a custom query to populate the events
-    	 
-    	 $calendarEvent->addEvent(new Event('Event Title 1', new \DateTime());
-    	 $calendarEvent->addEvent(new Event('Event Title 2', new \DateTime()));
+    	 // You may want do a custom query to populate the events	
+        return [
+            new CalendarEvent('Event Title 1', new \DateTime()),
+            new CalendarEvent('Event Title 2', new \DateTime())
+        ];
     }
 }
+```
+
+Adding bundle config:
+
+```yml
+// app/config/config.yml
+
+full_calendar:
+    adapter_class: AppBundle\Adapter\CustomAdapter
+    serializer_class: # by default AncaRebeca\FullCalendarBundle\Service\Serializer
 ```
 
 ### 5. Add styles and scripts in your template <a id="styles-scripts"></a>
@@ -193,6 +191,106 @@ $(function () {
 			}
 		}
 ]
+```
+
+## Define your own Controller
+You may want to define your own controller. This is specially usefull when you want to use some filters in the calendar:
+
+```javascript
+// custom-settings.js 
+// ...
+		eventSources: [
+		{
+			url: /your/custom/route,
+			type: 'POST',
+			data: {
+			   userName: 'fulanito'
+			}
+			error: function() {
+			   //alert()
+			}
+		}
+// ....
+```
+
+```php
+<?php
+
+namespace Acme\AppBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class CalendarCustomController extends Controller
+{
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function loadAction(Request $request)
+    {
+        $startDate = new \DateTime($request->get('start'));
+        $endDate = new \DateTime($request->get('end'));
+        $filter = [
+           'userName' => $request->get('userName', 'default')
+        ];
+
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/json');
+
+        try {
+            $content = $this->get('anca_rebeca_full_calendar.service.calendar')->getData($startDate, $endDate, $filters);
+            $response->setContent($content);
+            $response->setStatusCode(Response::HTTP_OK);
+        } catch (\Exception $exception) {
+            $response->setContent([]);
+            $response->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        return $response;
+    }
+}
+``` 
+
+## Define your own serializer
+You may want to define your own serializer. You only need to:
+
+Create your serializer implementing the serializer class:
+
+```php
+// src/AppBundle/Serializer/CustomSerializer.php
+
+<?php
+
+namespace AppBundle\Serializer;
+
+use AncaRebeca\FullCalendarBundle\Model\EventInterface;
+
+class CustomSerializer implements SerializerInterface
+{
+    /**
+     * @param array $data
+     *
+     * @return string json
+     */
+    public function serialize(array $data)
+    {
+		 // your code
+		  
+        return $json;
+    }
+}
+```
+Adding config:
+
+```yml
+// app/config/config.yml
+
+full_calendar:
+    adapter_class: AppBundle\Adapter\CustomAdapter
+    serializer_class: AppBundle\Serializer\CustomSerializer
 ```
 
 Contribute and feedback

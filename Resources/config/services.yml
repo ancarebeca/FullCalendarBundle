@@ -5,7 +5,6 @@ services:
 
     anca_rebeca_full_calendar.service.calendar:
         class: AncaRebeca\FullCalendarBundle\Service\Calendar
-        public: false
         arguments:
-            - @event_dispatcher
             - @anca_rebeca_full_calendar.service.serializer
+            - @event_dispatcher

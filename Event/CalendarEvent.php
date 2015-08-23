@@ -27,7 +27,7 @@ class CalendarEvent extends Event
     /**
      * @var EventInterface[]
      */
-    protected $events;
+    protected $events = [];
 
     /**
      * @param \Datetime $star

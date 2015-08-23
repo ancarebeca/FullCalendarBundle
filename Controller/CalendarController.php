@@ -18,7 +18,6 @@ class CalendarController extends Controller
         $startDate = new \DateTime($request->get('start'));
         $endDate = new \DateTime($request->get('end'));
         $filters = $request->get('filters', []);
-        $content = [];
 
         try {
             $content = $this
@@ -26,6 +25,7 @@ class CalendarController extends Controller
                 ->getData($startDate, $endDate, $filters);
             $status = empty($content) ? Response::HTTP_NO_CONTENT : Response::HTTP_OK;
         } catch (\Exception $exception) {
+            $content = '';
             $status = Response::HTTP_INTERNAL_SERVER_ERROR;
         }
 

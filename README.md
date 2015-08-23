@@ -183,10 +183,10 @@ $(function () {
 		eventDurationEditable: true,
 		eventSources: [
 		{
-			url: /your/custom/route,
+			url: /full-calendar/load,
 			type: 'POST',
 			data: {
-			
+				filters: { param: foo }
 			}
 			error: function() {
 			   //alert()

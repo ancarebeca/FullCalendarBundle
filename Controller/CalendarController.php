@@ -2,7 +2,6 @@
 
 namespace AncaRebeca\FullCalendarBundle\Controller;
 
-use AncaRebeca\FullCalendarBundle\Event\CalendarEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

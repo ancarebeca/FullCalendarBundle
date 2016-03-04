@@ -79,7 +79,8 @@ This listener is called when the event 'fullcalendar.set_data' is launched, for 
 
 namespace AppBundle\Listener;
 
-use AncaRebeca\FullCalendarBundle\Model\Event;
+use AncaRebeca\FullCalendarBundle\Event\CalendarEvent;
+use AppBundle\Entity\CalendarEvent as Event;
 
 class LoadDataListener
 {

@@ -13,15 +13,21 @@
         }
     ],
     "require": {
+        "php": ">=5.4",
+
         "symfony/symfony": "~2.1"
     },
     "require-dev": {
-      "phpspec/phpspec": "^2.2"
+        "phpspec/phpspec": "^2.2"
     },
     "autoload": {
-        "psr-0": {
-            "AncaRebeca\\FullCalendarBundle": ""
+        "psr-4": {
+            "AncaRebeca\\FullCalendarBundle\\": ""
         }
     },
-    "target-dir": "AncaRebeca/FullCalendarBundle"
+    "autoload-dev": {
+        "psr-4": {
+            "spec\\AncaRebeca\\FullCalendarBundle\\": "spec"
+        }
+    }
 }

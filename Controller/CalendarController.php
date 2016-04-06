@@ -25,7 +25,7 @@ class CalendarController extends Controller
                 ->getData($startDate, $endDate, $filters);
             $status = empty($content) ? Response::HTTP_NO_CONTENT : Response::HTTP_OK;
         } catch (\Exception $exception) {
-            $content = '';
+            $content = json_encode(array('error' => $exception->getMessage()));
             $status = Response::HTTP_INTERNAL_SERVER_ERROR;
         }
 

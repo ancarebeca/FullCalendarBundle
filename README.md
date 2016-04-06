@@ -96,7 +96,7 @@ class LoadDataListener
 	
     	 //You may want do a custom query to populate the events
     	 
-    	 $calendarEvent->addEvent(new Event('Event Title 1', new \DateTime());
+    	 $calendarEvent->addEvent(new Event('Event Title 1', new \DateTime()));
     	 $calendarEvent->addEvent(new Event('Event Title 2', new \DateTime()));
     }
 }

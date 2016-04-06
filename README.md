@@ -140,7 +140,7 @@ $> php app/console assets:install web
 ### 6. Define routes by default <a id="routing"></a>
 
 ```yml
-# app/config/config.yml
+# app/config/routing.yml
 
 ancarebeca_fullcalendar:
     resource: "@FullCalendarBundle/Resources/config/routing.yml"

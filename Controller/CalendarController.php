@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 class CalendarController extends Controller
 {
     /**
+     * @link http://fullcalendar.io/docs/event_data/events_json_feed/
+     *
      * @param Request $request
      *
      * @return Response

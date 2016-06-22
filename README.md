@@ -6,8 +6,8 @@ This bundle allow you to integrate [FullCalendar.js](http://fullcalendar.io/) li
 
 ## Requirements
 * FullCalendar.js v2.3.2
-* Symfony v2.3+
-* PHP v5.3+
+* Symfony v3.1+
+* PHP v5.5+
 * PHPSpec 
 
 Installation

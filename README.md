@@ -91,8 +91,8 @@ class LoadDataListener
      */
     public function loadData(CalendarEvent $calendarEvent)
     {
-    	 $startDate = $calendarEvent->getStartDatetime();
-   		 $endDate = $calendarEvent->getEndDatetime();
+    	 $startDate = $calendarEvent->getStart();
+   		 $endDate = $calendarEvent->getEnd();
 		 $filters = $calendarEvent->getFilters();
 	
     	 //You may want do a custom query to populate the events
@@ -135,7 +135,7 @@ Add javascript:
 Install assets
 
 ```bash
-$> php app/console assets:install web
+$> php bin/console assets:install web
 ```
 
 ### 6. Define routes by default <a id="routing"></a>

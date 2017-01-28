@@ -2,10 +2,10 @@
 
 [![Build Status](https://travis-ci.org/ancarebeca/FullCalendarBundle.svg)](https://travis-ci.org/ancarebeca/FullCalendarBundle)
 
-This bundle allow you to integrate [FullCalendar.js](http://fullcalendar.io/) library in your Symfony2.
+This bundle allow you to integrate [FullCalendar.js](http://fullcalendar.io/) library in your Symfony3.
 
 ## Requirements
-* FullCalendar.js v2.3.2
+* FullCalendar.js v3.1.0
 * Symfony v3.1+
 * PHP v5.5+
 * PHPSpec 
@@ -80,7 +80,7 @@ This listener is called when the event 'fullcalendar.set_data' is launched, for 
 namespace AppBundle\Listener;
 
 use AncaRebeca\FullCalendarBundle\Event\CalendarEvent;
-use AppBundle\Entity\CalendarEvent as Event;
+use AppBundle\Entity\CalendarEvent as MyCustomEvent;
 
 class LoadDataListener
 {
@@ -97,8 +97,8 @@ class LoadDataListener
 	
     	 //You may want do a custom query to populate the events
     	 
-    	 $calendarEvent->addEvent(new Event('Event Title 1', new \DateTime()));
-    	 $calendarEvent->addEvent(new Event('Event Title 2', new \DateTime()));
+    	 $calendarEvent->addEvent(new MyCustomEvent('Event Title 1', new \DateTime()));
+    	 $calendarEvent->addEvent(new MyCustomEvent('Event Title 2', new \DateTime()));
     }
 }
 ```

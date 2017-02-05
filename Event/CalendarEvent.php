@@ -3,9 +3,9 @@
 namespace AncaRebeca\FullCalendarBundle\Event;
 
 use AncaRebeca\FullCalendarBundle\Model\EventInterface;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Component\EventDispatcher\Event as EventDispatcher;
 
-class CalendarEvent extends Event
+class CalendarEvent extends EventDispatcher
 {
     const SET_DATA = 'fullcalendar.set_data';
 

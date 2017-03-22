@@ -150,7 +150,7 @@ ancarebeca_fullcalendar:
 # Extending Basic functionalities
 
 ## Extending the Calendar Javascript
-If you want to customize the FullCalendar javascript you can copy the fullcalendar.default-settings.js in Resources/public/js, and add your own logic:
+If you want to customize the FullCalendar javascript you can copy the fullcalendar.default-settings.js in YourBundle/Resources/public/js, and add your own logic:
 
 ```javascript
 $(function () {

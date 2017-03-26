@@ -2,12 +2,12 @@
 
 namespace AncaRebeca\FullCalendarBundle\Service;
 
-use AncaRebeca\FullCalendarBundle\Model\EventInterface;
+use AncaRebeca\FullCalendarBundle\Model\FullCalendarEvent;
 
 interface SerializerInterface
 {
     /**
-     * @param EventInterface[] $events
+     * @param FullCalendarEvent[] $events
      *
      * @return string json
      */

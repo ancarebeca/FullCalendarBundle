@@ -13,7 +13,7 @@ class SerializerSpec extends ObjectBehavior
         $this->shouldHaveType('AncaRebeca\FullCalendarBundle\Service\Serializer');
     }
 
-    function it_serialzes_data_successfully(EventInterface $event1, EventInterface $event2)
+    function it_serialzes_data_successfully(EventIntFullCalendarEventerface $event1, FullCalendarEvent $event2)
     {
         $event1->toArray()->shouldBeCalled()->willReturn(['title' => 'Event 1', 'start' => '20/01/2015']);
         $event2->toArray()->shouldBeCalled()->willReturn(['title' => 'Event 2', 'start' => '21/01/2015']);

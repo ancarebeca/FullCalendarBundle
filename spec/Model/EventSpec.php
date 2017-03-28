@@ -24,10 +24,6 @@ class EventSpec extends ObjectBehavior
         $this->shouldHaveType('AncaRebeca\FullCalendarBundle\Model\Event');
     }
 
-    function it_should_implement_an_event_interface()
-    {
-        $this->shouldImplement('AncaRebeca\FullCalendarBundle\Model\EventInterface');
-    }
 
     function it_has_require_values()
     {

@@ -15,7 +15,6 @@ class Serializer implements SerializerInterface
     {
         $result = [];
 
-        /** @var FullCalendarEvent $event */
         foreach ($events as $event) {
             $result[] = $event->toArray();
         }

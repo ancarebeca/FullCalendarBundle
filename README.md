@@ -49,9 +49,9 @@ public function registerBundles()
 
 namespace AppBundle\Entity;
 
-use AncaRebeca\FullCalendarBundle\Model\Event as BaseEvent;
+use AncaRebeca\FullCalendarBundle\Model\FullCalendarEvent;
 
-class CalendarEvent extends BaseEvent
+class CalendarEvent extends FullCalendarEvent
 {
 	// Your fields 
 }
@@ -79,7 +79,7 @@ This listener is called when the event 'fullcalendar.set_data' is launched, for 
 
 namespace AppBundle\Listener;
 
-use AncaRebeca\FullCalendarBundle\Event\CalendarEvent;
+use AncaRebeca\FullCalendarBundle\Model\FullCalendarEvent;
 use AppBundle\Entity\CalendarEvent as MyCustomEvent;
 
 class LoadDataListener
@@ -87,7 +87,7 @@ class LoadDataListener
     /**
      * @param CalendarEvent $calendarEvent
      *
-     * @return EventInterface[]
+     * @return FullCalendarEvent[]
      */
     public function loadData(CalendarEvent $calendarEvent)
     {

@@ -3,6 +3,7 @@
 namespace AncaRebeca\FullCalendarBundle\Event;
 
 use AncaRebeca\FullCalendarBundle\Model\EventInterface;
+use AncaRebeca\FullCalendarBundle\Model\FullCalendarEvent;
 use Symfony\Component\EventDispatcher\Event as EventDispatcher;
 
 class CalendarEvent extends EventDispatcher
@@ -66,11 +67,11 @@ class CalendarEvent extends EventDispatcher
     }
 
     /**
-     * @param EventInterface $event
+     * @param FullCalendarEvent $event
      *
      * @return $this
      */
-    public function addEvent(EventInterface $event)
+    public function addEvent(FullCalendarEvent $event)
     {
         if (!in_array($event, $this->events, true)) {
             $this->events[] = $event;
@@ -80,7 +81,7 @@ class CalendarEvent extends EventDispatcher
     }
 
     /**
-     * @return EventInterface[]
+     * @return FullCalendarEvent[]
      */
     public function getEvents()
     {

@@ -3,7 +3,7 @@
 namespace spec\AncaRebeca\FullCalendarBundle\Service;
 
 use AncaRebeca\FullCalendarBundle\Event\CalendarEvent;
-use AncaRebeca\FullCalendarBundle\Model\EventInterface;
+use AncaRebeca\FullCalendarBundle\Model\FullCalendarEvent;
 use AncaRebeca\FullCalendarBundle\Service\SerializerInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -25,7 +25,7 @@ class CalendarSpec extends ObjectBehavior
         SerializerInterface $serializer,
         EventDispatcherInterface $dispatcher,
         CalendarEvent $calendarEvent,
-        EventInterface $event
+        FullCalendarEvent $event
     ) {
         $startDate = new \DateTime();
         $endDate = new \DateTime();

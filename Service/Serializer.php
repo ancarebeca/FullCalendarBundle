@@ -2,12 +2,12 @@
 
 namespace AncaRebeca\FullCalendarBundle\Service;
 
-use AncaRebeca\FullCalendarBundle\Model\EventInterface;
+use AncaRebeca\FullCalendarBundle\Model\FullCalendarEvent;
 
 class Serializer implements SerializerInterface
 {
     /**
-     * @param EventInterface[] $events
+     * @param FullCalendarEvent[] $events
      *
      * @return string json
      */
@@ -15,7 +15,6 @@ class Serializer implements SerializerInterface
     {
         $result = [];
 
-        /** @var EventInterface $event */
         foreach ($events as $event) {
             $result[] = $event->toArray();
         }

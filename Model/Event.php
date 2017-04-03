@@ -2,7 +2,7 @@
 
 namespace AncaRebeca\FullCalendarBundle\Model;
 
-class Event implements EventInterface
+class Event extends FullCalendarEvent
 {
     /**
      * @var integer

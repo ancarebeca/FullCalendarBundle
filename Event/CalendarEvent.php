@@ -2,7 +2,6 @@
 
 namespace AncaRebeca\FullCalendarBundle\Event;
 
-use AncaRebeca\FullCalendarBundle\Model\EventInterface;
 use AncaRebeca\FullCalendarBundle\Model\FullCalendarEvent;
 use Symfony\Component\EventDispatcher\Event as EventDispatcher;
 
@@ -26,7 +25,7 @@ class CalendarEvent extends EventDispatcher
     protected $filters;
 
     /**
-     * @var EventInterface[]
+     * @var FullCalendarEvent[]
      */
     protected $events = [];
 

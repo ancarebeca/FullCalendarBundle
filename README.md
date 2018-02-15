@@ -5,7 +5,7 @@
 This bundle allow you to integrate [FullCalendar.js](http://fullcalendar.io/) library in your Symfony3.
 
 ## Requirements
-* FullCalendar.js v3.1.0
+* FullCalendar.js v3.8.*
 * Symfony v3.1+
 * PHP v5.5+
 * PHPSpec 
@@ -115,27 +115,29 @@ Add html template to display the calendar:
 
 Add styles:
 
-```twig
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('bundles/fullcalendar/css/fullcalendar/fullcalendar.min.css') }}" />
-{% endblock %}
-```
+According to fullcalendar.io docs there are three options avaialbe to install library files. (More details [here](https://fullcalendar.io/download/))
 
-Add javascript:
+#### 1. Install fullcalendar via [NPM](https://www.npmjs.com/)
+
+XXXXXX TODO XXXXXXXXXXX
+
+#### 2. Install fullcalendar via [Bower](https://bower.io/)
+
+XXXXXX TODO XXXXXXXXXXX
+
+#### 3. Via CDNJS
+
+XXXXXX TODO XXXXXXXXXXX
 
 ```twig
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.default-settings.js') }}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.2/fullcalendar.min.js"></script>
 {% endblock %}
-```
 
-Install assets
-
-```bash
-$> php bin/console assets:install web
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.2/fullcalendar.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.2/fullcalendar.print.css" />
+{% endblock %}
 ```
 
 ### 6. Define routes by default <a id="routing"></a>
